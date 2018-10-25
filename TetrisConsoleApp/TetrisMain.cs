@@ -8,7 +8,7 @@ namespace TetrisConsoleV1
         {
             GameBoard.ConsoleInitialize();
             Interface.Start();
-            
+            //a
             //Kombinacje alpejskie
             //gameboard.Uruchom();
             //as
