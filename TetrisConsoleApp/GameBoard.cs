@@ -24,8 +24,8 @@ namespace TetrisConsoleV1
         public static bool czyOpadł;
 
         //zmienna przesuwają miejsce wypisywania granic tetrisa
-        static int Position_X = 30;
-        static int Position_Y = 0;
+        public static int Position_X = 30;
+        public static int Position_Y = 0;
 
         //zmienne zmieniające wielkość tetrisa
         public static int TetrisBoardHeight = 23;
@@ -486,6 +486,7 @@ namespace TetrisConsoleV1
                 {
                     while(czyZapauzowane)
                     {
+                        Interface.PausePopUp();
                         ConsoleKey choice;
                         if (Console.KeyAvailable)
                         {
@@ -493,6 +494,7 @@ namespace TetrisConsoleV1
                             if (choice == ConsoleKey.P)
                             {
                                 czyZapauzowane = false;
+                                Interface.PausePopUpOff();
                             }
                         }
                         
