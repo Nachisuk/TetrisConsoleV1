@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Text;
+using Console = Colorful.Console;
 
 namespace TetrisConsoleV1
 {
@@ -107,9 +109,9 @@ namespace TetrisConsoleV1
                     {
                         Console.SetCursorPosition(2 * j+ Position_X + 2, i);
                         if(tetrisColorGrid[i, j] < 1 || tetrisColorGrid[i, j] > 8) 
-                            Console.ForegroundColor = Color(aktualnyKolor);
+                            Console.ForegroundColor = WriteColor(aktualnyKolor);
                         else
-                            Console.ForegroundColor = Color(tetrisColorGrid[i, j]);
+                            Console.ForegroundColor = WriteColor(tetrisColorGrid[i, j]);
 
                         Console.Write("■");
                         //Console.ResetColor();
@@ -126,7 +128,7 @@ namespace TetrisConsoleV1
         {
             WyczyscPrzedNastepnymKlockiem();
             Console.SetCursorPosition(Position_X * 2, 14);
-            Console.ForegroundColor = Color(nastepnyKolor);
+            Console.ForegroundColor = WriteColor(nastepnyKolor);
             int z = 0;
             for(int i =0; i< kształt.GetLength(0); i++)
             {
@@ -209,7 +211,7 @@ namespace TetrisConsoleV1
                     break;
                 case ConsoleKey.R:
                     Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = Color.White;
                     GameBoard gameboard = new GameBoard();
                     gameboard.Initlialize(actualGameMode);
                     gameboard.Uruchom();
@@ -226,7 +228,7 @@ namespace TetrisConsoleV1
         public void WyczyscLinie()
         {
             int combo = 0;
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = Color.White;
             Console.SetCursorPosition(Position_X * 2 + 6, 8);
             Console.Write(combo.ToString());
             Console.SetCursorPosition(Position_X * 2 + 8, 2);
@@ -306,7 +308,7 @@ namespace TetrisConsoleV1
                     tetrisColorGrid = nowaTablicaKolorów;
                     Rysuj();
 
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = Color.White;
                     Console.SetCursorPosition(Position_X * 2 + 6, 8);
                     Console.Write(combo.ToString());
                 }
@@ -332,7 +334,7 @@ namespace TetrisConsoleV1
 
             if(combo > 0)
             {
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = Color.White;
                 Console.SetCursorPosition(Position_X * 2+8, 2);
                 Console.Write(poziom.ToString());
 
@@ -406,32 +408,32 @@ namespace TetrisConsoleV1
             czyGameOver = false;
         }
 
-        public static ConsoleColor Color(int rodzaj)
+        public static Color WriteColor(int rodzaj)
         {           
             switch (rodzaj)
             {
                 case 1:
-                    return ConsoleColor.Cyan;
+                    return Color.Red;
                 case 2:
-                    return ConsoleColor.Blue;
+                    return Color.Blue;
                 case 3:
-                    return ConsoleColor.Yellow;
+                    return Color.Yellow;
                 case 4:
-                    return ConsoleColor.Green;
+                    return Color.Green;
                 case 5:
-                    return ConsoleColor.Magenta;
+                    return Color.Magenta;
                 case 6:
-                    return ConsoleColor.Red;
+                    return Color.Red;
                 case 7:
-                    return ConsoleColor.DarkGreen;
+                    return Color.DarkGreen;
                 default:
-                    return ConsoleColor.Black;
+                    return Color.Black;
             }
         }
 
         public void Uruchom()
         {
-            Console.ForegroundColor = Color(aktualnyKolor);
+            Console.ForegroundColor = WriteColor(aktualnyKolor);
             tetris = new Tetrimo();
             następnyTetris = new Tetrimo();
             tetris.Stwórz();
@@ -459,7 +461,7 @@ namespace TetrisConsoleV1
                     {
                         Random rnd = new Random();
 
-                        Console.ForegroundColor = Color(aktualnyKolor);
+                        Console.ForegroundColor = WriteColor(aktualnyKolor);
 
                         tetris = następnyTetris;
                         następnyTetris = new Tetrimo();
