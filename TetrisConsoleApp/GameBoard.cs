@@ -472,14 +472,44 @@ namespace TetrisConsoleV1
                         RysujNastępnyKlocek(następnyTetris.getKształt());
 
                         if (!tetris.Stwórz())
+                        {
                             czyGameOver = true;
+                            Console.ForegroundColor = Color.White;
+                        }
+                            
                         czyOpadł = false;
                     } 
                     
                     if(czyGameOver == true)
                     {
-                        //if Game Over to jakies dzialania, pewnie GameOver() - jakies dopisywanie do scoreboarda itd. a potem reset i wznowienie albo powrot do menu
-                       // break;
+                        Interface.GameOverPopUp();
+                        while (true)
+                        {
+                            ConsoleKey choice;
+                            if (Console.KeyAvailable)
+                            {
+                                choice = Console.ReadKey(true).Key;
+                                switch (choice)
+                                {
+                                    case ConsoleKey.LeftArrow:
+                                        //
+                                        break;
+                                    case ConsoleKey.RightArrow:
+                                        //
+                                        break;
+                                    case ConsoleKey.R:
+                                        Console.Clear();
+                                        Console.ForegroundColor = Color.White;
+                                        GameBoard gameboard = new GameBoard();
+                                        gameboard.Initlialize(actualGameMode);
+                                        gameboard.Uruchom();
+                                        break;
+                                    case ConsoleKey.Escape:
+                                        Interface.MainMenu(MenuOptions.ZwrocOpcje());
+                                        break;
+                                }
+                            }
+                        }
                     }
                 }
                 if(czyZapauzowane)

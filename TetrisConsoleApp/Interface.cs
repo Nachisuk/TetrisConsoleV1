@@ -108,15 +108,7 @@ namespace TetrisConsoleV1
             int StartowyX = 0 + GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
-            /*
-            for (int lengthCount = 0; lengthCount <= GameBoard.TetrisBoardHeight; ++lengthCount)
-            {
-                Console.SetCursorPosition(0 + pos_x, lengthCount + pos_y);
-                Console.Write("■");
-                Console.SetCursorPosition((GameBoard.TetrisBoardHeight - 1) + pos_x, lengthCount + pos_y);
-                Console.Write("■");
-            }
-            */
+            //string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
 
             Console.SetCursorPosition(StartowyX, StartowyY);
 
@@ -141,8 +133,8 @@ namespace TetrisConsoleV1
         {
             int StartowyX = 0 + GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
-            //int tmp_y = 3;
             string [] okienko = TetrisAsciStrings.getPausePopUpString();
+            //string[] okienko = TetrisAsciStrings.GetGameOver(true);
 
             Console.SetCursorPosition(StartowyX, StartowyY);
             for(int tmp_y = StartowyY; tmp_y < StartowyY+ okienko.Length; tmp_y++)
@@ -187,51 +179,87 @@ namespace TetrisConsoleV1
 
                 }
             }
+        }
 
-            /*
-            for (int widthCount = 0; widthCount <= (GameBoard.TetrisBoardWidth + 2) * 2 + 3; widthCount++)
+
+
+
+        public static void GameOverPopUp()
+        {
+            int StartowyX = 0 + GameBoard.Position_X - 2;
+            int StartowyY = 3 + GameBoard.Position_Y;
+            //string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
+            string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
+
+            Console.SetCursorPosition(StartowyX, StartowyY);
+
+            for (int hightCount = 0; hightCount < doWpisania.Length; hightCount++)
             {
-                if (Console.CursorLeft == GameBoard.Position_X || Console.CursorLeft == GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
-                    Console.Write("*");
-
-                else if (Console.CursorLeft > GameBoard.Position_X && Console.CursorLeft < GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
+                Console.SetCursorPosition(StartowyX, StartowyY + hightCount);
+                /*
+                for (int widthCount = 0; widthCount <doWpisania[hightCount].Length; widthCount++)
                 {
-                    Console.Write(" ");
-                    for (int j = 0; j < GameBoard.TetrisBoardWidth; j++)
+                    Console.Write(doWpisania[hightCount][widthCount]);
+                }
+                */
+                Console.Write(doWpisania[hightCount]);
+            }
+
+        }
+
+        public static void GameOverPopUpOff()
+        {
+            int StartowyX = 0 + GameBoard.Position_X - 2;
+            int StartowyY = 3 + GameBoard.Position_Y;
+            //string[] okienko = TetrisAsciStrings.getPausePopUpString();
+            string[] okienko = TetrisAsciStrings.GetGameOver(true);
+
+            Console.SetCursorPosition(StartowyX, StartowyY);
+            for (int tmp_y = StartowyY; tmp_y < StartowyY + okienko.Length; tmp_y++)
+            {
+                Console.SetCursorPosition(StartowyX, tmp_y);
+
+                for (int widthCount = 0; widthCount <= okienko[tmp_y - StartowyY].Length; widthCount++)
+                {
+                    if (Console.CursorLeft == GameBoard.Position_X || Console.CursorLeft == GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
+                        Console.Write("*");
+
+                    else if (Console.CursorLeft > GameBoard.Position_X && Console.CursorLeft < GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
                     {
-                        Console.SetCursorPosition(2 * j + GameBoard.Position_X + 2, tmp_y);
-                        if (GameBoard.grid[tmp_y, j] == 1 || GameBoard.lokacjaOstatniegoTetrisaGrid[tmp_y, j] == 1)
+                        Console.Write(" ");
+                        widthCount++;
+                        for (int j = 0; j < GameBoard.TetrisBoardWidth; j++)
                         {
                             Console.SetCursorPosition(2 * j + GameBoard.Position_X + 2, tmp_y);
-                            if (GameBoard.tetrisColorGrid[tmp_y, j] < 1 || GameBoard.tetrisColorGrid[tmp_y, j] > 8)
-                                Console.ForegroundColor = GameBoard.WriteColor(GameBoard.aktualnyKolor);
+                            if (GameBoard.grid[tmp_y, j] == 1 || GameBoard.lokacjaOstatniegoTetrisaGrid[tmp_y, j] == 1)
+                            {
+                                Console.SetCursorPosition(2 * j + GameBoard.Position_X + 2, tmp_y);
+                                if (GameBoard.tetrisColorGrid[tmp_y, j] < 1 || GameBoard.tetrisColorGrid[tmp_y, j] > 8)
+                                    Console.ForegroundColor = GameBoard.WriteColor(GameBoard.aktualnyKolor);
+                                else
+                                    Console.ForegroundColor = GameBoard.WriteColor(GameBoard.tetrisColorGrid[tmp_y, j]);
+
+                                Console.Write("■ ");
+                            }
                             else
-                                Console.ForegroundColor = GameBoard.WriteColor(GameBoard.tetrisColorGrid[tmp_y, j]);
+                            {
+                                Console.Write("  ");
+                            }
+                            widthCount += 2;
+                        }
 
-                            Console.Write("■ ");
-                        }
-                        else
-                        {
-                            Console.Write("  ");
-                        }
+                        Console.ForegroundColor = Color.White;
+                        Console.SetCursorPosition(GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2, tmp_y);
                     }
-                    Console.ForegroundColor = Color.White;
-                    Console.SetCursorPosition(GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2, tmp_y);
+
+                    else
+                        Console.Write(" ");
+
                 }
-
-                else
-                    Console.Write(" ");
-                
             }
-            */
-
-
         }
 
-        public static void GameOverScreen()
-        {
-
-        }
+        
 
         //do czyszczenia linii
         public static void CurrentConsoleLineClear()
