@@ -18,7 +18,7 @@ namespace TetrisConsoleV1
         public static Stopwatch timer;
         public static Stopwatch dropTimer;
         public static Stopwatch inputTimer;
-        public static int dropTime, dropRate, inputTime;
+        public static int dropTime, dropRate, inputTime, playTime;
 
         //Zmienna mówiąca czy dany klocek tetrisa już opadł
         public static bool czyOpadł;
@@ -95,7 +95,9 @@ namespace TetrisConsoleV1
             Console.SetCursorPosition(Position_X * 2, 12);
             Console.Write("Następny kształt:");
 
-
+            Console.ForegroundColor = Color.SpringGreen;
+            Console.SetCursorPosition(5, 2);
+            Console.Write(""+actualGameMode);
         }
 
         public static void Rysuj()
@@ -108,7 +110,7 @@ namespace TetrisConsoleV1
                     if (grid[i, j] == 1 || lokacjaOstatniegoTetrisaGrid[i, j] == 1)
                     {
                         Console.SetCursorPosition(2 * j+ Position_X + 2, i);
-                        if(tetrisColorGrid[i, j] < 1 || tetrisColorGrid[i, j] > 8) 
+                        if(tetrisColorGrid[i, j] < 1 || tetrisColorGrid[i, j] > 9) 
                             Console.ForegroundColor = WriteColor(aktualnyKolor);
                         else
                             Console.ForegroundColor = WriteColor(tetrisColorGrid[i, j]);
@@ -406,6 +408,7 @@ namespace TetrisConsoleV1
             bool isLineCleared = false;
             czyZapauzowane = false;
             czyGameOver = false;
+            playTime = 0;
         }
 
         public static Color WriteColor(int rodzaj)
@@ -426,6 +429,8 @@ namespace TetrisConsoleV1
                     return Color.Red;
                 case 7:
                     return Color.DarkGreen;
+                case 8:
+                    return Color.White;
                 default:
                     return Color.Black;
             }
@@ -534,16 +539,50 @@ namespace TetrisConsoleV1
                 switch(actualGameMode)
                 {
                     case "  Maraton ":
-                        if(poziom == 15)
+                       
+                        if (poziom == 15)
                         {
-                            Interface.MainMenu(MenuOptions.ZwrocOpcje());
+                            Interface.GameOverPopUp();
                         }
                         break;
                     case "  Endless ":
+
                         break;
                     case "   Ultra  ":
+                        if (poziom < 5) poziom = 5;
+                        playTime = (int)timer.ElapsedMilliseconds/1000;
+                        Console.ForegroundColor = Color.White;
+                        Console.SetCursorPosition(5, 4);
+                        Console.Write("Pozotały czas: ");
+                        Console.SetCursorPosition(21, 4);
+                        float czas = 180 - playTime;
+
+                        Console.Write(""+czas+" ");
+                        if (playTime > 180)
+                        {
+                            Interface.GameOverPopUp();
+                        }
+                        
                         break;
                     case " LandSlide ":
+                        playTime = (int)timer.ElapsedMilliseconds / 1000;
+
+                        Console.ForegroundColor = Color.White;
+                        Console.SetCursorPosition(5, 4);
+                        Console.Write("Następny osuw za: ");
+                        Console.SetCursorPosition(23, 4);
+
+                        float czas1 = 16 - playTime;
+                        Console.Write("" + czas1 + " ");
+
+                        if (playTime > 15)
+                        {
+                            for(int i = 0; i< 5; i++)
+                            {
+                                Tetrimo.Landslide();
+                            }
+                            timer.Restart();
+                        }
                         break;
 
                 }

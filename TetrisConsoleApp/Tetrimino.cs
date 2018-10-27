@@ -109,6 +109,20 @@ namespace TetrisConsoleV1
             return typ;
         }
     }
+    public static class Tetrimino_Element
+    {
+        private static int[,] tablicaTetrimo = new int[1, 1] {{1}};
+        private static string typ = "o";
+
+        public static int[,] getTablicaTetrimo()
+        {
+            return tablicaTetrimo;
+        }
+        public static String getTypTetrimo()
+        {
+            return typ;
+        }
+    }
 
 
 
@@ -189,6 +203,36 @@ namespace TetrisConsoleV1
 
             Aktualizuj();
             return true;
+        }
+
+        public static void Landslide()
+        {
+            Random rnd = new Random();
+            int x_position = 0;
+            int y_position = rnd.Next(0,9);
+            bool czyPonizej = false;
+            int[] rndtable = new int[] { 1, 1, 1, 1, 1, 2, 2, 2 };
+            int range = rndtable[rnd.Next(0, rndtable.Length)];
+            while(!czyPonizej)
+            {
+                if (x_position + range >= GameBoard.TetrisBoardHeight + 1)
+                {
+                    GameBoard.lokacjaOstatniegoTetrisaGrid[x_position, y_position] = 1;
+                    GameBoard.tetrisColorGrid[x_position, y_position] = 8;
+                    czyPonizej = true;
+                }
+                else if (x_position + range < GameBoard.TetrisBoardHeight + 1)
+                {
+                    if (GameBoard.lokacjaOstatniegoTetrisaGrid[x_position + range, y_position] == 1)
+                    {
+                        GameBoard.lokacjaOstatniegoTetrisaGrid[x_position, y_position] = 1;
+                        GameBoard.tetrisColorGrid[x_position, y_position] = 8;
+                        czyPonizej = true;
+                    }
+                }
+                x_position++;
+            }
+            GameBoard.Rysuj();
         }
 
         public void Opadaj()
