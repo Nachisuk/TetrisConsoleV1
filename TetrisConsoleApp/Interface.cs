@@ -11,16 +11,13 @@ namespace TetrisConsoleV1
 
         public static void Start()
         {
-            int heightOfWindow = 30;
-            int widthOfWindow = 100;
 
-            Console.SetWindowSize(widthOfWindow, heightOfWindow);
+            setConsoleSize();
 
             Console.WriteLine(TetrisAsciStrings.getMainTitleString());
             Console.SetCursorPosition(Console.WindowWidth / 3, 10);
             Console.WriteLine("Press any button to continue");
 
-           // Console.WriteAscii("       HASSELHOFF", Color.FromArgb(DA, V, ID));
             Console.ReadKey();
 
             MainMenu(MenuOptions.ZwrocOpcje());
@@ -31,8 +28,7 @@ namespace TetrisConsoleV1
 
         public static void MainMenu(List<MainMenuOptions> listaopcji)
         {
-
-            Console.Clear();
+            setConsoleSize();
 
             Console.WriteLine(TetrisAsciStrings.getMainTitleString());
 
@@ -99,6 +95,9 @@ namespace TetrisConsoleV1
                     case ConsoleKey.Enter:
                         listaopcji[i].FunkcjaOpcji();
                         break;
+                    case ConsoleKey.Escape:
+                        MainMenu(MenuOptions.ZwrocOpcje());
+                        break;
                 }
             }
         }
@@ -124,6 +123,14 @@ namespace TetrisConsoleV1
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new String(' ', Console.WindowWidth));
             Console.SetCursorPosition(currentXposition, currentline);
+        }
+
+        public static void setConsoleSize()
+        {
+            int heightOfWindow = 30;
+            int widthOfWindow = 100;
+            Console.SetWindowSize(widthOfWindow, heightOfWindow);
+            Console.Clear();
         }
     }
 }
