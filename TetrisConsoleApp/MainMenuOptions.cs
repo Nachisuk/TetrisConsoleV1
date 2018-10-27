@@ -12,7 +12,7 @@ namespace TetrisConsoleV1
 
     public class MainMenu_ClassicTet : MainMenuOptions
     {
-        public string nazwa = "Graj ";
+        public string nazwa = "      Graj       ";
         public void FunkcjaOpcji()
         {
             Interface.MainMenu(GameMenuOptions.ZwrocTryby());
@@ -27,7 +27,7 @@ namespace TetrisConsoleV1
 
     public class MainMenu_Scoreboard : MainMenuOptions
     {
-        public string nazwa = "Tablice wyników ";
+        public string nazwa = " Tablice wyników ";
         public void FunkcjaOpcji()
         {
             
@@ -41,7 +41,7 @@ namespace TetrisConsoleV1
 
     public class MainMenu_ExitGame : MainMenuOptions
     {
-        public string nazwa = "Wyjdz z gry ";
+        public string nazwa = "   Wyjdz z gry   ";
         public void FunkcjaOpcji()
         {
             Environment.Exit(0);
@@ -55,7 +55,7 @@ namespace TetrisConsoleV1
 
     public class MainMenu_Statystyki : MainMenuOptions
     {
-        public string nazwa = "Statystyki ";
+        public string nazwa = "   Statystyki    ";
         public void FunkcjaOpcji()
         {
             
@@ -68,7 +68,7 @@ namespace TetrisConsoleV1
     }
     public class GameMode_Marathon : MainMenuOptions
     {
-        public string nazwa = "Maraton ";
+        public string nazwa = "  Maraton ";
         public void FunkcjaOpcji()
         {
             GameMenuOptions.GameModeStart(nazwa);
@@ -81,7 +81,7 @@ namespace TetrisConsoleV1
     }
     public class GameMode_Endless : MainMenuOptions
     {
-        public string nazwa = "Endless ";
+        public string nazwa = "  Endless ";
         public void FunkcjaOpcji()
         {
             GameMenuOptions.GameModeStart(nazwa);
@@ -95,7 +95,7 @@ namespace TetrisConsoleV1
 
     public class GameMode_Ultra : MainMenuOptions
     {
-        public string nazwa = "Ultra ";
+        public string nazwa = "   Ultra  ";
         public void FunkcjaOpcji()
         {
             GameMenuOptions.GameModeStart(nazwa);
@@ -109,7 +109,7 @@ namespace TetrisConsoleV1
 
     public class GameMode_LandSlide : MainMenuOptions
     {
-        public string nazwa = "LandSlide ";
+        public string nazwa = " LandSlide ";
         public void FunkcjaOpcji()
         {
             GameMenuOptions.GameModeStart(nazwa);
