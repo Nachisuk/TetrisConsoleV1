@@ -56,6 +56,10 @@ namespace TetrisConsoleV1
         public static bool czyGameOver;
         public static bool czyZapauzowane;
 
+        //zmienna określająca GameMode
+
+        public static String actualGameMode;
+
 
         //Podstawowa funkcja rysująca granice Tetrisa, jak na razie w takiej postaci
         public static void drawBorder()
@@ -207,7 +211,7 @@ namespace TetrisConsoleV1
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
                     GameBoard gameboard = new GameBoard();
-                    gameboard.Initlialize();
+                    gameboard.Initlialize(actualGameMode);
                     gameboard.Uruchom();
                     break;
                 case ConsoleKey.P:
@@ -322,7 +326,7 @@ namespace TetrisConsoleV1
             if (wyczyszczoneLinie % 10 == 0 && wyczyszczoneLinie > 0 && isLineCleared)
             {
                 poziom++;
-                if (poziom <= 10) dropRate = dropRate - 20;
+                if (poziom <= 10) dropRate = dropRate - 22;
                 isLineCleared = false;
             }
 
@@ -352,13 +356,15 @@ namespace TetrisConsoleV1
         }
 
         //TODO
-        public void Initlialize()
+        public void Initlialize(String gamemode)
         {
             InitializeVariables();
             Console.CursorVisible = false;
             Console.Clear();
             Console.WriteLine();
             Console.Title = "Tetris";
+
+            actualGameMode = gamemode;
 
             setConsoleWindowSize();
             drawBorder();
@@ -490,7 +496,18 @@ namespace TetrisConsoleV1
                         
                     }
                 }
+                switch(actualGameMode)
+                {
+                    case "Maraton":
+                        break;
+                    case "Endless":
+                        break;
+                    case "Ultra":
+                        break;
+                    case "Landslide":
+                        break;
 
+                }
                 Sterowanie2();
                 WyczyscLinie();
 

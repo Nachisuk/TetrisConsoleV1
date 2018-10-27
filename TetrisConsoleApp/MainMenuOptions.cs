@@ -71,7 +71,7 @@ namespace TetrisConsoleV1
         public string nazwa = "Maraton ";
         public void FunkcjaOpcji()
         {
-
+            GameMenuOptions.GameModeStart(nazwa);
         }
 
         public string zwrocNazwe()
@@ -84,10 +84,7 @@ namespace TetrisConsoleV1
         public string nazwa = "Endless ";
         public void FunkcjaOpcji()
         {
-            Console.Clear();
-            GameBoard gameboard = new GameBoard();
-            gameboard.Initlialize();
-            gameboard.Uruchom();
+            GameMenuOptions.GameModeStart(nazwa);
         }
 
         public string zwrocNazwe()
@@ -101,7 +98,7 @@ namespace TetrisConsoleV1
         public string nazwa = "Ultra ";
         public void FunkcjaOpcji()
         {
-
+            GameMenuOptions.GameModeStart(nazwa);
         }
 
         public string zwrocNazwe()
@@ -115,7 +112,7 @@ namespace TetrisConsoleV1
         public string nazwa = "LandSlide ";
         public void FunkcjaOpcji()
         {
-
+            GameMenuOptions.GameModeStart(nazwa);
         }
 
         public string zwrocNazwe()
@@ -151,6 +148,14 @@ namespace TetrisConsoleV1
 
             return listaopcji;
         }
+
+        public static void GameModeStart(String mode)
+        {
+            Console.Clear();
+            GameBoard gameboard = new GameBoard();
+            gameboard.Initlialize(mode);
+            gameboard.Uruchom();
+        }
     }
-    
+
 }
