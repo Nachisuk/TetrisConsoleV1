@@ -12,13 +12,11 @@ namespace TetrisConsoleV1
 
     public class MainMenu_ClassicTet : MainMenuOptions
     {
-        public string nazwa = "Klasyczny Tetris ";
+        public string nazwa = "Graj ";
         public void FunkcjaOpcji()
         {
-            Console.Clear();
-            GameBoard gameboard = new GameBoard();
-            gameboard.Initlialize();
-            gameboard.Uruchom();
+            Interface.MainMenu(GameMenuOptions.ZwrocTryby());
+           
         }
 
         public string zwrocNazwe()
@@ -68,6 +66,64 @@ namespace TetrisConsoleV1
             return this.nazwa;
         }
     }
+    public class GameMode_Marathon : MainMenuOptions
+    {
+        public string nazwa = "Maraton ";
+        public void FunkcjaOpcji()
+        {
+
+        }
+
+        public string zwrocNazwe()
+        {
+            return this.nazwa;
+        }
+    }
+    public class GameMode_Endless : MainMenuOptions
+    {
+        public string nazwa = "Endless ";
+        public void FunkcjaOpcji()
+        {
+            Console.Clear();
+            GameBoard gameboard = new GameBoard();
+            gameboard.Initlialize();
+            gameboard.Uruchom();
+        }
+
+        public string zwrocNazwe()
+        {
+            return this.nazwa;
+        }
+    }
+
+    public class GameMode_Ultra : MainMenuOptions
+    {
+        public string nazwa = "Ultra ";
+        public void FunkcjaOpcji()
+        {
+
+        }
+
+        public string zwrocNazwe()
+        {
+            return this.nazwa;
+        }
+    }
+
+    public class GameMode_LandSlide : MainMenuOptions
+    {
+        public string nazwa = "LandSlide ";
+        public void FunkcjaOpcji()
+        {
+
+        }
+
+        public string zwrocNazwe()
+        {
+            return this.nazwa;
+        }
+    }
+
     public static class MenuOptions
     {
 
@@ -78,6 +134,20 @@ namespace TetrisConsoleV1
             listaopcji.Add(new MainMenu_Scoreboard());
             listaopcji.Add(new MainMenu_Statystyki());
             listaopcji.Add(new MainMenu_ExitGame());
+
+            return listaopcji;
+        }
+    }
+
+    public static class GameMenuOptions
+    {
+        public static List<MainMenuOptions> ZwrocTryby()
+        {
+            List<MainMenuOptions> listaopcji = new List<MainMenuOptions>();
+            listaopcji.Add(new GameMode_Marathon());
+            listaopcji.Add(new GameMode_Endless());
+            listaopcji.Add(new GameMode_Ultra());
+            listaopcji.Add(new GameMode_LandSlide());
 
             return listaopcji;
         }

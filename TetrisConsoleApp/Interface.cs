@@ -23,13 +23,13 @@ namespace TetrisConsoleV1
            // Console.WriteAscii("       HASSELHOFF", Color.FromArgb(DA, V, ID));
             Console.ReadKey();
 
-            MainMenu();
+            MainMenu(MenuOptions.ZwrocOpcje());
 
 
         }
 
 
-        public static void MainMenu()
+        public static void MainMenu(List<MainMenuOptions> listaopcji)
         {
 
             Console.Clear();
@@ -37,7 +37,7 @@ namespace TetrisConsoleV1
             Console.WriteLine(TetrisAsciStrings.getMainTitleString());
 
             ConsoleKey key;
-            List<MainMenuOptions> listaopcji = MenuOptions.ZwrocOpcje();
+           //List<MainMenuOptions> listaopcji = MenuOptions.ZwrocOpcje();
             int i;
             int positionX = 30;
             Console.SetCursorPosition(positionX, Console.WindowHeight / 2);
@@ -102,6 +102,7 @@ namespace TetrisConsoleV1
                 }
             }
         }
+
 
         public static void GameOverScreen()
         {

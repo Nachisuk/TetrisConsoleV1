@@ -214,7 +214,7 @@ namespace TetrisConsoleV1
                     if (!czyZapauzowane) czyZapauzowane = true;
                     break;
                 case ConsoleKey.Escape:
-                    Interface.MainMenu();
+                    Interface.MainMenu(MenuOptions.ZwrocOpcje());
                     break;
             }
         }
@@ -319,9 +319,10 @@ namespace TetrisConsoleV1
             else if (combo > 4)
                 punkty += 350 * poziom;
             
-            if (wyczyszczoneLinie % 5 == 0 && wyczyszczoneLinie > 0 && isLineCleared)
+            if (wyczyszczoneLinie % 10 == 0 && wyczyszczoneLinie > 0 && isLineCleared)
             {
                 poziom++;
+                if (poziom <= 10) dropRate = dropRate - 20;
                 isLineCleared = false;
             }
 
