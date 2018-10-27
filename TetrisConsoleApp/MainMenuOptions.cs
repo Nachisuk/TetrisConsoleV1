@@ -121,6 +121,20 @@ namespace TetrisConsoleV1
         }
     }
 
+    public class GameMode_Haunted : MainMenuOptions
+    {
+        public string nazwa = "  Haunted  ";
+        public void FunkcjaOpcji()
+        {
+            GameMenuOptions.GameModeStart(nazwa);
+        }
+
+        public string zwrocNazwe()
+        {
+            return this.nazwa;
+        }
+    }
+
     public static class MenuOptions
     {
 
@@ -145,6 +159,7 @@ namespace TetrisConsoleV1
             listaopcji.Add(new GameMode_Endless());
             listaopcji.Add(new GameMode_Ultra());
             listaopcji.Add(new GameMode_LandSlide());
+            listaopcji.Add(new GameMode_Haunted());
 
             return listaopcji;
         }

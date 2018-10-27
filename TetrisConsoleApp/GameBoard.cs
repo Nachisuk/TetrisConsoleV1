@@ -61,6 +61,8 @@ namespace TetrisConsoleV1
         //zmienna określająca GameMode
 
         public static String actualGameMode;
+        public static bool czyPokazywać;
+        public static bool isHaunted;
 
 
         //Podstawowa funkcja rysująca granice Tetrisa, jak na razie w takiej postaci
@@ -115,8 +117,20 @@ namespace TetrisConsoleV1
                         else
                             Console.ForegroundColor = WriteColor(tetrisColorGrid[i, j]);
 
-                        Console.Write("■");
-                        //Console.ResetColor();
+                        if(actualGameMode == "  Haunted  ")
+                        {
+                            if(czyPokazywać || grid[i, j] == 1)
+                            {
+                                Console.Write("■");
+                            }
+                            else
+                            {
+                                Console.Write(" ");
+                            }
+                        }
+                        else
+                         Console.Write("■");
+
                     }
                     else
                     {
@@ -409,6 +423,8 @@ namespace TetrisConsoleV1
             czyZapauzowane = false;
             czyGameOver = false;
             playTime = 0;
+            czyPokazywać = false;
+            isHaunted = false;
         }
 
         public static Color WriteColor(int rodzaj)
@@ -464,6 +480,12 @@ namespace TetrisConsoleV1
 
                     else
                     {
+                        if(actualGameMode == "  Haunted  " && !isHaunted)
+                        {
+                            czyPokazywać = true;
+                            isHaunted = true;
+                            timer.Restart();
+                        }
                         Random rnd = new Random();
 
                         Console.ForegroundColor = WriteColor(aktualnyKolor);
@@ -582,6 +604,17 @@ namespace TetrisConsoleV1
                                 Tetrimo.Landslide();
                             }
                             timer.Restart();
+                        }
+                        break;
+                    case "  Haunted  ":
+                        if(isHaunted)
+                        {
+                            playTime = (int)timer.ElapsedMilliseconds;
+                            if (playTime > 800)
+                            {
+                                isHaunted = false;
+                                czyPokazywać = false;
+                            }
                         }
                         break;
 
