@@ -498,13 +498,17 @@ namespace TetrisConsoleV1
                 }
                 switch(actualGameMode)
                 {
-                    case "Maraton":
+                    case "  Maraton ":
+                        if(poziom == 15)
+                        {
+                            Interface.MainMenu(MenuOptions.ZwrocOpcje());
+                        }
                         break;
-                    case "Endless":
+                    case "  Endless ":
                         break;
-                    case "Ultra":
+                    case "   Ultra  ":
                         break;
-                    case "Landslide":
+                    case " LandSlide ":
                         break;
 
                 }
