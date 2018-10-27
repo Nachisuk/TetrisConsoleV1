@@ -484,9 +484,10 @@ namespace TetrisConsoleV1
                 }
                 if(czyZapauzowane)
                 {
-                    while(czyZapauzowane)
+                    Interface.PausePopUp();
+                    while (czyZapauzowane)
                     {
-                        Interface.PausePopUp();
+                        
                         ConsoleKey choice;
                         if (Console.KeyAvailable)
                         {

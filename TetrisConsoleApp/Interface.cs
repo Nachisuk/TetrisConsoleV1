@@ -107,6 +107,7 @@ namespace TetrisConsoleV1
         {
             int StartowyX = 0 + GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
+            string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
             /*
             for (int lengthCount = 0; lengthCount <= GameBoard.TetrisBoardHeight; ++lengthCount)
             {
@@ -118,11 +119,20 @@ namespace TetrisConsoleV1
             */
 
             Console.SetCursorPosition(StartowyX, StartowyY);
-            for (int widthCount = 0; widthCount <= GameBoard.TetrisBoardWidth + 2; widthCount++)
+
+            for(int hightCount = 0; hightCount<doWpisania.Length; hightCount++)
             {
-                Console.Write("■-");
+                Console.SetCursorPosition(StartowyX, StartowyY+hightCount);
+                /*
+                for (int widthCount = 0; widthCount <doWpisania[hightCount].Length; widthCount++)
+                {
+                    Console.Write(doWpisania[hightCount][widthCount]);
+                }
+                */
+                Console.Write(doWpisania[hightCount]);
             }
-            Console.Write("■");
+
+            
 
 
         }
@@ -131,9 +141,54 @@ namespace TetrisConsoleV1
         {
             int StartowyX = 0 + GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
-            int tmp_y = 3;
+            //int tmp_y = 3;
+            string [] okienko = TetrisAsciStrings.getPausePopUpString();
 
             Console.SetCursorPosition(StartowyX, StartowyY);
+            for(int tmp_y = StartowyY; tmp_y < StartowyY+ okienko.Length; tmp_y++)
+            {
+                Console.SetCursorPosition(StartowyX, tmp_y);
+
+                for (int widthCount = 0; widthCount <= okienko[tmp_y-StartowyY].Length; widthCount++)
+                {
+                    if (Console.CursorLeft == GameBoard.Position_X || Console.CursorLeft == GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
+                        Console.Write("*");
+
+                    else if (Console.CursorLeft > GameBoard.Position_X && Console.CursorLeft < GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
+                    {
+                        Console.Write(" ");
+                        widthCount++;
+                        for (int j = 0; j < GameBoard.TetrisBoardWidth; j++)
+                        {
+                            Console.SetCursorPosition(2 * j + GameBoard.Position_X + 2, tmp_y);
+                            if (GameBoard.grid[tmp_y, j] == 1 || GameBoard.lokacjaOstatniegoTetrisaGrid[tmp_y, j] == 1)
+                            {
+                                Console.SetCursorPosition(2 * j + GameBoard.Position_X + 2, tmp_y);
+                                if (GameBoard.tetrisColorGrid[tmp_y, j] < 1 || GameBoard.tetrisColorGrid[tmp_y, j] > 8)
+                                    Console.ForegroundColor = GameBoard.WriteColor(GameBoard.aktualnyKolor);
+                                else
+                                    Console.ForegroundColor = GameBoard.WriteColor(GameBoard.tetrisColorGrid[tmp_y, j]);
+
+                                Console.Write("■ ");
+                            }
+                            else
+                            {
+                                Console.Write("  ");
+                            }
+                            widthCount += 2;
+                        }
+
+                        Console.ForegroundColor = Color.White;
+                        Console.SetCursorPosition(GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2, tmp_y);
+                    }
+
+                    else
+                        Console.Write(" ");
+
+                }
+            }
+
+            /*
             for (int widthCount = 0; widthCount <= (GameBoard.TetrisBoardWidth + 2) * 2 + 3; widthCount++)
             {
                 if (Console.CursorLeft == GameBoard.Position_X || Console.CursorLeft == GameBoard.Position_X + (GameBoard.TetrisBoardWidth + 1) * 2)
@@ -168,6 +223,7 @@ namespace TetrisConsoleV1
                     Console.Write(" ");
                 
             }
+            */
 
 
         }

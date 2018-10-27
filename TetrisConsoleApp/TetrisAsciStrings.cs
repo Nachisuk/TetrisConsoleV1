@@ -20,5 +20,11 @@ namespace TetrisConsoleV1
                                                                    \|_________|";
             return title;
         }
+
+        public static string [] getPausePopUpString()
+        {
+            string [] title = { "■-■-■-■-■-■-■-■-■-■-■-■-■-■", "■                         ■", "■                         ■", "■                         ■", "■-■-■-■-■-■-■-■-■-■-■-■-■-■" };
+            return title;
+        }
     }
 }
