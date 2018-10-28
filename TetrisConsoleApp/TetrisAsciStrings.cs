@@ -33,11 +33,11 @@ namespace TetrisConsoleV1
             return title;
         }
 
-        public static string[] GetGameOver(bool ifLeftPressed)
+        public static string[] GetGameOver()
         {
 
-            if (ifLeftPressed)
-            {
+            
+            
                 string[] title = {  "■-■-■-■-■-■-■-■-■-■-■-■-■-■",
                                     "■  _  _ _  _  _ _ ___ __  ■",
                                 /*  "■ | |/// \| \| | | __/ _| ■",    */ "■ | |/// \\| \\| | | __/ _| ■",
@@ -53,25 +53,7 @@ namespace TetrisConsoleV1
                                     "■                         ■",
                                     "■-■-■-■-■-■-■-■-■-■-■-■-■-■" };
                 return title;
-            }
-            else
-            {
-                string[] title = {  "■-■-■-■-■-■-■-■-■-■-■-■-■-■",
-                                    "■  _  _ _  _  _ _ ___ __  ■",
-                                /*  "■ | |/// \| \| | | __/ _| ■",    */ "■ | |/// \\| \\| | | __/ _| ■",
-                                /*  "■ |  (( o | \\ | | _( (_  ■",    */ "■ |  (( o | \\\\ | | _( (_  ■",
-                                /*  "■ |_|\\\_/|_|\_|_|___\__| ■",    */  "■ |_|\\\\\\_/|_|\\_|_|___\\__| ■",
-                                    "■            __  _____ __ ■",
-                                 /* "■           / _|| o \ V / ■",    */  "■           / _|| o \\ V / ■",
-                                 /* "■          ( |_n|   /\ /  ■",    */  "■          ( |_n|   /\\ /  ■",
-                                 /* "■           \__||_|\\|_|  ■",    */  "■           \\__||_|\\\\|_|  ■",
-                                    "■                         ■",
-                                    "■                         ■",
-                                    "■  Restart  Podsumowanie  ■",
-                                    "■                         ■",
-                                    "■-■-■-■-■-■-■-■-■-■-■-■-■-■" };
-                return title;
-            }
+            
         }
 
         public static string getPodsumowanieString()
