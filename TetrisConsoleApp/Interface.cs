@@ -103,9 +103,10 @@ namespace TetrisConsoleV1
         }
 
 
+
         public static void PausePopUp()
         {
-            int StartowyX = 0 + GameBoard.Position_X - 2;
+            int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
             //string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
@@ -131,7 +132,7 @@ namespace TetrisConsoleV1
 
         public static void PausePopUpOff()
         {
-            int StartowyX = 0 + GameBoard.Position_X - 2;
+            int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             string [] okienko = TetrisAsciStrings.getPausePopUpString();
             //string[] okienko = TetrisAsciStrings.GetGameOver(true);
@@ -182,11 +183,9 @@ namespace TetrisConsoleV1
         }
 
 
-
-
         public static void GameOverPopUp()
         {
-            int StartowyX = 0 + GameBoard.Position_X - 2;
+            int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             //string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
             string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
@@ -258,7 +257,35 @@ namespace TetrisConsoleV1
                 }
             }
         }
+        
+        public static void GameOver_ChangeLightedOption(bool ifLeftPressed)
+        {
+            //int StartowyX = 0 + GameBoard.Position_X - 2;
+            //int StartowyY = 3 + GameBoard.Position_Y;
+            string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
+            int StartowyY = 3 + GameBoard.Position_Y +(doWpisania.Length-3);
+            int StartowyX = GameBoard.Position_X - 2 + 1;
 
+            if (ifLeftPressed)
+            {
+                Console.SetCursorPosition(StartowyX, StartowyY);
+                Console.ForegroundColor = Color.White;
+                Console.Write("  Restart  ");
+
+                Console.ForegroundColor = Color.Red;
+                Console.Write("Podsumowanie  ");
+            }
+            else
+            {
+                Console.SetCursorPosition(StartowyX, StartowyY);
+                Console.ForegroundColor = Color.Red;
+                Console.Write("  Restart  ");
+
+                Console.ForegroundColor = Color.White;
+                Console.Write("Podsumowanie  ");
+            }
+
+        }
         
 
         //do czyszczenia linii

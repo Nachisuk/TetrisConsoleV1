@@ -505,7 +505,10 @@ namespace TetrisConsoleV1
                     
                     if(czyGameOver == true)
                     {
+                        
                         Interface.GameOverPopUp();
+                        Interface.GameOver_ChangeLightedOption(false);
+                        bool ifLeftPressed = true;
                         while (true)
                         {
                             ConsoleKey choice;
@@ -515,16 +518,32 @@ namespace TetrisConsoleV1
                                 switch (choice)
                                 {
                                     case ConsoleKey.LeftArrow:
-                                        Restart();
+                                        if (!ifLeftPressed)
+                                        {
+                                            Interface.GameOver_ChangeLightedOption(ifLeftPressed);
+                                            ifLeftPressed = !ifLeftPressed;
+                                        }
+                                        //Restart();
                                         break;
                                     case ConsoleKey.RightArrow:
-                                        Podsumowanie();
+                                        if (ifLeftPressed)
+                                        {
+                                            Interface.GameOver_ChangeLightedOption(ifLeftPressed);
+                                            ifLeftPressed = !ifLeftPressed;
+                                        }
+                                        //Podsumowanie();
                                         break;
                                     case ConsoleKey.R:
                                         Restart();
                                         break;
                                     case ConsoleKey.Escape:
                                         Interface.MainMenu(MenuOptions.ZwrocOpcje());
+                                        break;
+                                    case ConsoleKey.Enter:
+                                        if (ifLeftPressed)
+                                            Restart();
+                                        else
+                                            Podsumowanie();
                                         break;
                                 }
                             }
@@ -556,7 +575,9 @@ namespace TetrisConsoleV1
                        
                         if (poziom == 15)
                         {
-                            Interface.GameOverPopUp();
+                            czyGameOver = true;
+                            Console.ForegroundColor = Color.White;
+                            //Interface.GameOverPopUp();
                         }
                         break;
                     case "  Endless ":
@@ -574,7 +595,9 @@ namespace TetrisConsoleV1
                         Console.Write(""+czas+" ");
                         if (playTime > 180)
                         {
-                            Interface.GameOverPopUp();
+                            czyGameOver = true;
+                            Console.ForegroundColor = Color.White;
+                            //Interface.GameOverPopUp();
                         }
                         
                         break;
