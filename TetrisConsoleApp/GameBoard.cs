@@ -226,11 +226,7 @@ namespace TetrisConsoleV1
                     tetris.Obroc();
                     break;
                 case ConsoleKey.R:
-                    Console.Clear();
-                    Console.ForegroundColor = Color.White;
-                    GameBoard gameboard = new GameBoard();
-                    gameboard.Initlialize(actualGameMode);
-                    gameboard.Uruchom();
+                    Restart();
                     break;
                 case ConsoleKey.P:
                     if (!czyZapauzowane) czyZapauzowane = true;
@@ -519,17 +515,13 @@ namespace TetrisConsoleV1
                                 switch (choice)
                                 {
                                     case ConsoleKey.LeftArrow:
-                                        //
+                                        Restart();
                                         break;
                                     case ConsoleKey.RightArrow:
-                                        //
+                                        Podsumowanie();
                                         break;
                                     case ConsoleKey.R:
-                                        Console.Clear();
-                                        Console.ForegroundColor = Color.White;
-                                        GameBoard gameboard = new GameBoard();
-                                        gameboard.Initlialize(actualGameMode);
-                                        gameboard.Uruchom();
+                                        Restart();
                                         break;
                                     case ConsoleKey.Escape:
                                         Interface.MainMenu(MenuOptions.ZwrocOpcje());
@@ -623,6 +615,56 @@ namespace TetrisConsoleV1
                 WyczyscLinie();
 
             }
+        }
+
+
+        public void Podsumowanie()
+        {
+            Console.Clear();
+            Console.ForegroundColor = WriteColor(aktualnyKolor);
+            Console.WriteLine(TetrisAsciStrings.getPodsumowanieString());
+
+            string space = TetrisAsciStrings.space1();
+
+            Console.SetCursorPosition(0, 10);
+            Console.WriteAscii("          " + poziom.ToString());
+
+            string pom = TetrisAsciStrings.getPoziomString();
+            Console.SetCursorPosition(Position_X, 9);
+            Console.Write(pom);
+
+
+            Console.SetCursorPosition(0, 17);
+            Console.WriteAscii(space + punkty.ToString());
+
+            pom = TetrisAsciStrings.getPunktyString();
+            Console.SetCursorPosition(Position_X, 16);
+            Console.Write(pom);
+
+
+            Console.SetCursorPosition(0, 24);
+            Console.WriteAscii("        " + wyczyszczoneLinie.ToString());
+
+            pom = TetrisAsciStrings.getLinieString();
+            Console.SetCursorPosition(Position_X, 23);
+            Console.Write(pom);
+
+            //Przejście do scoreboardów albo coś ale na razie main menu
+
+            Console.SetCursorPosition(Position_X, 29);
+            Console.Write("            Press any button to continue");
+
+            Console.ReadKey();
+            Console.ForegroundColor = Color.White;
+            Interface.MainMenu(MenuOptions.ZwrocOpcje());
+        }
+        public static void Restart()
+        {
+            Console.Clear();
+            Console.ForegroundColor = Color.White;
+            GameBoard gameboard = new GameBoard();
+            gameboard.Initlialize(actualGameMode);
+            gameboard.Uruchom();
         }
 
 
