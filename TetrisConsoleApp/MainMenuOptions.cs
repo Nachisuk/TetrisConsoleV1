@@ -32,7 +32,8 @@ namespace TetrisConsoleV1
         public string nazwa = " Tablice wyników ";
         public void FunkcjaOpcji()
         {
-            
+            Console.Clear();
+            Interface.Scoreboard();
         }
 
         public string zwrocNazwe()

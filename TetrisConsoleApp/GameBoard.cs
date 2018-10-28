@@ -679,6 +679,8 @@ namespace TetrisConsoleV1
 
             Console.ReadKey();
             Console.ForegroundColor = Color.White;
+
+            Interface.zapiszWynik(poziom, punkty, wyczyszczoneLinie, actualGameMode);
             Interface.MainMenu(MenuOptions.ZwrocOpcje());
         }
         public static void Restart()

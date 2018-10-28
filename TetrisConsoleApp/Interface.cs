@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using Console = Colorful.Console;
 
@@ -330,6 +331,132 @@ namespace TetrisConsoleV1
             int widthOfWindow = 100;
             Console.SetWindowSize(widthOfWindow, heightOfWindow);
             Console.Clear();
+        }
+
+        public static void zapiszWynik(int poziom, int punkty, int wyczyszczoneLinie, string gamemode)
+        {
+            switch (gamemode)
+            {
+                case "  Maraton ":
+                    using (StreamWriter writetext = File.AppendText("maraton.txt"))
+                    {
+                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie+System.Environment.NewLine);
+                    }
+                    break;
+                case "  Endless ":
+                    using (StreamWriter writetext = File.AppendText("endless.txt"))
+                    {
+                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
+                    }
+                    break;
+                case "   Ultra  ":
+                    using (StreamWriter writetext = File.AppendText("ultra.txt"))
+                    {
+                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
+                    }
+                    break;
+                case " LandSlide ":
+                    using (StreamWriter writetext = File.AppendText("landslide.txt"))
+                    {
+                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
+                    }
+                    break;
+                case "  Haunted  ":
+                    using (StreamWriter writetext = File.AppendText("haunted.txt"))
+                    {
+                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
+                    }
+                    break;
+            }
+        }
+        public static void WypiszWyniki(string gamemode)
+        {
+            Console.Clear();
+            switch (gamemode)
+            {
+                case "maraton":
+                    Console.WriteAscii("        Maraton");
+                    if (!File.Exists("maraton.txt")) using (File.CreateText("maraton.txt")) ;
+                    foreach (var line in File.ReadLines("maraton.txt"))
+                    {
+                        Console.WriteLine(line);
+                    }
+                        break;
+                case "endless":
+                    Console.WriteAscii("        Endless");
+                    FileStream fs;
+                    if (!File.Exists("endless.txt")) using (File.CreateText("endless.txt"));                 
+                    foreach (var line in File.ReadLines("endless.txt"))
+                    {
+                        Console.WriteLine(line);
+                    }
+                    break;
+                case "ultra":
+                    Console.WriteAscii("        Ultra");
+                    if (!File.Exists("ultra.txt")) using (File.CreateText("ultra.txt")) ;
+                    foreach (var line in File.ReadLines("ultra.txt"))
+                    {
+                        Console.WriteLine(line);
+                    }
+                    break;
+                case "landslide":
+                    Console.WriteAscii("        Landslide");
+                    if (!File.Exists("landslide.txt")) using (File.CreateText("landslide.txt")) ;
+                    foreach (var line in File.ReadLines("landslide.txt"))
+                    {
+                        Console.WriteLine(line);
+                    }
+                    break;
+                case "haunted":
+                    Console.WriteAscii("        Haunted");
+                    if (!File.Exists("haunted.txt")) using (File.CreateText("haunted.txt")) ;
+                    foreach (var line in File.ReadLines("haunted.txt"))
+                    {
+                        Console.WriteLine(line);
+                    }
+                    break;
+            }
+        }
+
+        public static void Scoreboard()
+        {
+            
+            WypiszWyniki("maraton");
+
+            List<String> lista = new List<String>();
+            lista.Add("maraton");
+            lista.Add("endless");
+            lista.Add("ultra");
+            lista.Add("landslide");
+            lista.Add("haunted");
+            int iloscOpcji = lista.Count;
+            int i = 0;
+            while(true)
+            {
+                ConsoleKey key = ConsoleKey.B;
+                if (Console.KeyAvailable)
+                {
+                    key = Console.ReadKey(true).Key;
+                }
+                switch (key)
+                {
+                    case ConsoleKey.Escape:
+                        MainMenu(MenuOptions.ZwrocOpcje());
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        if (i == 0) i = iloscOpcji - 1;
+                        else i = i - 1;                       
+                        WypiszWyniki(lista[i]);
+                        break;
+                    case ConsoleKey.RightArrow:
+                        if (i == iloscOpcji - 1) i = 0;
+                        else i = i + 1;
+                        WypiszWyniki(lista[i]);
+                        break;
+
+                }
+            }
+            
         }
     }
 }
