@@ -46,6 +46,11 @@ namespace TetrisConsoleV1
                 Console.Write(listaopcji[i].zwrocNazwe());
             }
             i = 1;
+            Console.SetCursorPosition(positionX, Console.WindowHeight / 2 + 5);
+            CurrentConsoleLineClear(positionX);
+            Console.ForegroundColor = Color.DarkMagenta;
+            Console.Write(listaopcji[1].zwrocOpis());
+            Console.ForegroundColor = Color.White;
             int liczbaOpcji = listaopcji.Count;
 
             while (true)
@@ -78,6 +83,13 @@ namespace TetrisConsoleV1
                             else Console.Write(listaopcji[z].zwrocNazwe());
                         }
                         i = (i - 1) % liczbaOpcji;
+
+                        Console.SetCursorPosition(positionX, Console.WindowHeight / 2 + 5);
+                        CurrentConsoleLineClear(positionX);
+                        Console.ForegroundColor = Color.DarkMagenta;
+                        Console.Write(listaopcji[i].zwrocOpis());
+                        Console.ForegroundColor = Color.White;
+
                         break;
 
                     case ConsoleKey.RightArrow:
@@ -91,6 +103,13 @@ namespace TetrisConsoleV1
                             Console.Write(listaopcji[(i + j) % liczbaOpcji].zwrocNazwe());
                         }
                         i = (i + 1) % liczbaOpcji;
+
+                        Console.SetCursorPosition(positionX, Console.WindowHeight / 2 + 5);
+                        CurrentConsoleLineClear(positionX);
+                        Console.ForegroundColor = Color.DarkMagenta;
+                        Console.Write(listaopcji[i].zwrocOpis());
+                        Console.ForegroundColor = Color.White;
+
                         break;
                     case ConsoleKey.Enter:
                         listaopcji[i].FunkcjaOpcji();

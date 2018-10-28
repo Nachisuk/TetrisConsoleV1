@@ -556,7 +556,7 @@ namespace TetrisConsoleV1
                        
                         if (poziom == 15)
                         {
-                            Interface.GameOverPopUp();
+                            czyGameOver = true;
                         }
                         break;
                     case "  Endless ":

@@ -8,6 +8,7 @@ namespace TetrisConsoleV1
     {
        void FunkcjaOpcji();
        string zwrocNazwe();
+       string zwrocOpis();
     }
 
     public class MainMenu_ClassicTet : MainMenuOptions
@@ -23,6 +24,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return ""; }
     }
 
     public class MainMenu_Scoreboard : MainMenuOptions
@@ -37,6 +39,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return ""; }
     }
 
     public class MainMenu_ExitGame : MainMenuOptions
@@ -51,6 +54,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return ""; }
     }
 
     public class MainMenu_Statystyki : MainMenuOptions
@@ -65,6 +69,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return ""; }
     }
     public class GameMode_Marathon : MainMenuOptions
     {
@@ -78,6 +83,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return "Graj do 15 poziomu i zdobądź jak najwięcej punktów"; }
     }
     public class GameMode_Endless : MainMenuOptions
     {
@@ -91,6 +97,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return "        Graj bez ograniczeń"; }
     }
 
     public class GameMode_Ultra : MainMenuOptions
@@ -105,6 +112,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return "Zdobądź jak najwięcej punktów w 3 minuty"; }
     }
 
     public class GameMode_LandSlide : MainMenuOptions
@@ -119,6 +127,7 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+        public string zwrocOpis() { return "         Uważaj na osuwiska"; }
     }
 
     public class GameMode_Haunted : MainMenuOptions
@@ -133,6 +142,8 @@ namespace TetrisConsoleV1
         {
             return this.nazwa;
         }
+
+        public string zwrocOpis() { return "         Przetestuj swoją pamięć"; }
     }
 
     public static class MenuOptions
