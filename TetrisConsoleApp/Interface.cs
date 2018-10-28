@@ -188,7 +188,7 @@ namespace TetrisConsoleV1
             int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             //string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
-            string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
+            string[] doWpisania = TetrisAsciStrings.GetGameOver();
 
             Console.SetCursorPosition(StartowyX, StartowyY);
 
@@ -211,7 +211,7 @@ namespace TetrisConsoleV1
             int StartowyX = 0 + GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             //string[] okienko = TetrisAsciStrings.getPausePopUpString();
-            string[] okienko = TetrisAsciStrings.GetGameOver(true);
+            string[] okienko = TetrisAsciStrings.GetGameOver();
 
             Console.SetCursorPosition(StartowyX, StartowyY);
             for (int tmp_y = StartowyY; tmp_y < StartowyY + okienko.Length; tmp_y++)
@@ -262,7 +262,7 @@ namespace TetrisConsoleV1
         {
             //int StartowyX = 0 + GameBoard.Position_X - 2;
             //int StartowyY = 3 + GameBoard.Position_Y;
-            string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
+            string[] doWpisania = TetrisAsciStrings.GetGameOver();
             int StartowyY = 3 + GameBoard.Position_Y +(doWpisania.Length-3);
             int StartowyX = GameBoard.Position_X - 2 + 1;
 
