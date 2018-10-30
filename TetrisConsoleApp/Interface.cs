@@ -129,7 +129,6 @@ namespace TetrisConsoleV1
             int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
-            //string[] doWpisania = TetrisAsciStrings.GetGameOver(true);
 
             Console.SetCursorPosition(StartowyX, StartowyY);
 
@@ -155,7 +154,6 @@ namespace TetrisConsoleV1
             int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
             string [] okienko = TetrisAsciStrings.getPausePopUpString();
-            //string[] okienko = TetrisAsciStrings.GetGameOver(true);
 
             Console.SetCursorPosition(StartowyX, StartowyY);
             for(int tmp_y = StartowyY; tmp_y < StartowyY+ okienko.Length; tmp_y++)
@@ -205,9 +203,9 @@ namespace TetrisConsoleV1
 
         public static void GameOverPopUp()
         {
+            Console.ForegroundColor = Color.White;
             int StartowyX = GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
-            //string[] doWpisania = TetrisAsciStrings.getPausePopUpString();
             string[] doWpisania = TetrisAsciStrings.GetGameOver();
 
             Console.SetCursorPosition(StartowyX, StartowyY);
@@ -230,7 +228,6 @@ namespace TetrisConsoleV1
         {
             int StartowyX = 0 + GameBoard.Position_X - 2;
             int StartowyY = 3 + GameBoard.Position_Y;
-            //string[] okienko = TetrisAsciStrings.getPausePopUpString();
             string[] okienko = TetrisAsciStrings.GetGameOver();
 
             Console.SetCursorPosition(StartowyX, StartowyY);
@@ -333,91 +330,51 @@ namespace TetrisConsoleV1
             Console.Clear();
         }
 
-        /*public static void zapiszWynik(int poziom, int punkty, int wyczyszczoneLinie, string gamemode)
+        public static string PodsumowanieScreen()
         {
-            switch (gamemode)
-            {
-                case "  Maraton ":
-                    using (StreamWriter writetext = File.AppendText("maraton.txt"))
-                    {
-                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie+System.Environment.NewLine);
-                    }
-                    break;
-                case "  Endless ":
-                    using (StreamWriter writetext = File.AppendText("endless.txt"))
-                    {
-                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
-                    }
-                    break;
-                case "   Ultra  ":
-                    using (StreamWriter writetext = File.AppendText("ultra.txt"))
-                    {
-                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
-                    }
-                    break;
-                case " LandSlide ":
-                    using (StreamWriter writetext = File.AppendText("landslide.txt"))
-                    {
-                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
-                    }
-                    break;
-                case "  Haunted  ":
-                    using (StreamWriter writetext = File.AppendText("haunted.txt"))
-                    {
-                        writetext.WriteLine("Anon" + " " + poziom + " " + punkty + " " + wyczyszczoneLinie);
-                    }
-                    break;
-            }
+            Console.Clear();
+            Console.ForegroundColor = GameBoard.WriteColor(GameBoard.aktualnyKolor);
+            Console.WriteLine(TetrisAsciStrings.getPodsumowanieString());
+
+            string space = TetrisAsciStrings.space1();
+
+            Console.SetCursorPosition(0, 10);
+            Console.WriteAscii("          " + GameBoard.poziom.ToString());
+
+            string pom = TetrisAsciStrings.getPoziomString();
+            Console.SetCursorPosition(GameBoard.Position_X, 9);
+            Console.Write(pom);
+
+
+            Console.SetCursorPosition(0, 17);
+            Console.WriteAscii(space + GameBoard.punkty.ToString());
+
+            pom = TetrisAsciStrings.getPunktyString();
+            Console.SetCursorPosition(GameBoard.Position_X, 16);
+            Console.Write(pom);
+
+
+            Console.SetCursorPosition(0, 24);
+            Console.WriteAscii("        " + GameBoard.wyczyszczoneLinie.ToString());
+
+            pom = TetrisAsciStrings.getLinieString();
+            Console.SetCursorPosition(GameBoard.Position_X, 23);
+            Console.Write(pom);
+
+            Console.SetCursorPosition(GameBoard.Position_X, 29);
+            Console.Write("            Podaj swoją nazwę: ");
+
+            String imie;
+            imie = Console.ReadLine();
+            //Console.ReadKey();
+            Console.ForegroundColor = Color.White;
+            return imie;
         }
-        */
+
         public static void WypiszWyniki(string gamemode)
         {
             Console.Clear();
-            /*switch (gamemode)
-            {
-                case "maraton":
-                    Console.WriteAscii("        Maraton");
-                    if (!File.Exists("maraton.txt")) using (File.CreateText("maraton.txt")) ;
-                    foreach (var line in File.ReadLines("maraton.txt"))
-                    {
-                        Console.WriteLine(line);
-                    }
-                        break;
-                case "endless":
-                    Console.WriteAscii("        Endless");
-                    FileStream fs;
-                    if (!File.Exists("endless.txt")) using (File.CreateText("endless.txt"));                 
-                    foreach (var line in File.ReadLines("endless.txt"))
-                    {
-                        Console.WriteLine(line);
-                    }
-                    break;
-                case "ultra":
-                    Console.WriteAscii("        Ultra");
-                    if (!File.Exists("ultra.txt")) using (File.CreateText("ultra.txt")) ;
-                    foreach (var line in File.ReadLines("ultra.txt"))
-                    {
-                        Console.WriteLine(line);
-                    }
-                    break;
-                case "landslide":
-                    Console.WriteAscii("        Landslide");
-                    if (!File.Exists("landslide.txt")) using (File.CreateText("landslide.txt")) ;
-                    foreach (var line in File.ReadLines("landslide.txt"))
-                    {
-                        Console.WriteLine(line);
-                    }
-                    break;
-                case "haunted":
-                    Console.WriteAscii("        Haunted");
-                    if (!File.Exists("haunted.txt")) using (File.CreateText("haunted.txt")) ;
-                    foreach (var line in File.ReadLines("haunted.txt"))
-                    {
-                        Console.WriteLine(line);
-                    }
-                    break;
-            }*/
-            //NEW:
+            
             Console.WriteAscii("        "+String.Format(""+gamemode[0].ToString().ToUpper()+gamemode.Substring(1)));
             int i = 1;
             foreach (var wynikZNazwami in GameBoard.bazaWynikow.WynikiTrybowAktualne[gamemode])
@@ -425,8 +382,6 @@ namespace TetrisConsoleV1
                 Console.WriteLine("\t"+i+".\t"+wynikZNazwami.Value+ " - " + wynikZNazwami.Key + " pkt." );
                 i++;
             }
-
-
         }
 
         public static void Scoreboard()

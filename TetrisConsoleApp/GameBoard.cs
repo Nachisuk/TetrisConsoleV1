@@ -584,7 +584,6 @@ namespace TetrisConsoleV1
                         {
                             czyGameOver = true;
                             Console.ForegroundColor = Color.White;
-                            //Interface.GameOverPopUp();
                         }
                         break;
                     case "  Endless ":
@@ -604,7 +603,6 @@ namespace TetrisConsoleV1
                         {
                             czyGameOver = true;
                             Console.ForegroundColor = Color.White;
-                            //Interface.GameOverPopUp();
                         }
                         
                         break;
@@ -650,46 +648,12 @@ namespace TetrisConsoleV1
 
         public void Podsumowanie()
         {
-            Console.Clear();
-            Console.ForegroundColor = WriteColor(aktualnyKolor);
-            Console.WriteLine(TetrisAsciStrings.getPodsumowanieString());
-
-            string space = TetrisAsciStrings.space1();
-
-            Console.SetCursorPosition(0, 10);
-            Console.WriteAscii("          " + poziom.ToString());
-
-            string pom = TetrisAsciStrings.getPoziomString();
-            Console.SetCursorPosition(Position_X, 9);
-            Console.Write(pom);
-
-
-            Console.SetCursorPosition(0, 17);
-            Console.WriteAscii(space + punkty.ToString());
-
-            pom = TetrisAsciStrings.getPunktyString();
-            Console.SetCursorPosition(Position_X, 16);
-            Console.Write(pom);
-
-
-            Console.SetCursorPosition(0, 24);
-            Console.WriteAscii("        " + wyczyszczoneLinie.ToString());
-
-            pom = TetrisAsciStrings.getLinieString();
-            Console.SetCursorPosition(Position_X, 23);
-            Console.Write(pom);
-
-            //Przejście do scoreboardów albo coś ale na razie main menu
-
-            Console.SetCursorPosition(Position_X, 29);
-            Console.Write("            Podaj swoją nazwę: ");
-
-            String imie;
-            imie = Console.ReadLine();
-            //Console.ReadKey();
-            Console.ForegroundColor = Color.White;
-
-            //Interface.zapiszWynik(poziom, punkty, wyczyszczoneLinie, actualGameMode);
+            string imie = Interface.PodsumowanieScreen();
+            if (String.IsNullOrEmpty(imie))
+            {
+                imie = "Anonim";
+            }
+            
             bazaWynikow.TryZapisacDanyWynik(punkty, actualGameMode, imie);
 
             Interface.MainMenu(MenuOptions.ZwrocOpcje());
