@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BazaWynikow.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="MainMenuOptions.cs" />

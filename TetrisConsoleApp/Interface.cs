@@ -333,7 +333,7 @@ namespace TetrisConsoleV1
             Console.Clear();
         }
 
-        public static void zapiszWynik(int poziom, int punkty, int wyczyszczoneLinie, string gamemode)
+        /*public static void zapiszWynik(int poziom, int punkty, int wyczyszczoneLinie, string gamemode)
         {
             switch (gamemode)
             {
@@ -369,10 +369,11 @@ namespace TetrisConsoleV1
                     break;
             }
         }
+        */
         public static void WypiszWyniki(string gamemode)
         {
             Console.Clear();
-            switch (gamemode)
+            /*switch (gamemode)
             {
                 case "maraton":
                     Console.WriteAscii("        Maraton");
@@ -415,7 +416,17 @@ namespace TetrisConsoleV1
                         Console.WriteLine(line);
                     }
                     break;
+            }*/
+            //NEW:
+            Console.WriteAscii("        "+String.Format(""+gamemode[0].ToString().ToUpper()+gamemode.Substring(1)));
+            int i = 1;
+            foreach (var wynikZNazwami in GameBoard.bazaWynikow.WynikiTrybowAktualne[gamemode])
+            {
+                Console.WriteLine("\t"+i+".\t"+wynikZNazwami.Value+ " - " + wynikZNazwami.Key + " pkt." );
+                i++;
             }
+
+
         }
 
         public static void Scoreboard()

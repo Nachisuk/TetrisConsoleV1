@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
+using TetrisConsoleApp;
 using Console = Colorful.Console;
 
 namespace TetrisConsoleV1
@@ -63,6 +64,10 @@ namespace TetrisConsoleV1
         public static String actualGameMode;
         public static bool czyPokazywać;
         public static bool isHaunted;
+
+        
+        //zmienna BazyDanych
+        public static BazaWynikow bazaWynikow;
 
 
         //Podstawowa funkcja rysująca granice Tetrisa, jak na razie w takiej postaci
@@ -392,6 +397,8 @@ namespace TetrisConsoleV1
             Console.CursorVisible = false;
             Console.Clear();
             Console.Title = "Tetris";
+            bazaWynikow = new BazaWynikow();
+            bazaWynikow.InicjalizujBazeWynikow();
 
             setConsoleWindowSize();
         }
@@ -680,7 +687,9 @@ namespace TetrisConsoleV1
             Console.ReadKey();
             Console.ForegroundColor = Color.White;
 
-            Interface.zapiszWynik(poziom, punkty, wyczyszczoneLinie, actualGameMode);
+            //Interface.zapiszWynik(poziom, punkty, wyczyszczoneLinie, actualGameMode);
+            bazaWynikow.TryZapisacDanyWynik(punkty, actualGameMode);
+
             Interface.MainMenu(MenuOptions.ZwrocOpcje());
         }
         public static void Restart()
