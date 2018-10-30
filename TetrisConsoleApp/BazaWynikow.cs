@@ -101,10 +101,10 @@ namespace TetrisConsoleApp
             }
         }
 
-        public void TryZapisacDanyWynik(int iloscPunktow, string gamemode/*, string nazwaUzytkownika */)
+        public void TryZapisacDanyWynik(int iloscPunktow, string gamemode, string nazwaUzytkownika )
         {
 
-            /*//*/ String nazwaUzytkownika = "TestowyUkonczony";
+            // String nazwaUzytkownika = "TestowyUkonczony";
             String kluczOfMode;
 
             //dla pewnosci
@@ -131,7 +131,7 @@ namespace TetrisConsoleApp
             }
 
 
-            //tablice wyników są od najmniejszej ilości punktów do najwiekszej -> 500 - ... , 1000 - ... , 2000 - ...
+            
             if (WynikiTrybowAktualne[kluczOfMode].ContainsKey(iloscPunktow)) //jezeli byl juz taki wynik to nadpisz go nowa nazwa uzytkownika(bo siwierzszy gracz)
             {
                 WynikiTrybowAktualne[kluczOfMode][iloscPunktow] = nazwaUzytkownika;

@@ -682,13 +682,15 @@ namespace TetrisConsoleV1
             //Przejście do scoreboardów albo coś ale na razie main menu
 
             Console.SetCursorPosition(Position_X, 29);
-            Console.Write("            Press any button to continue");
+            Console.Write("            Podaj swoją nazwę: ");
 
-            Console.ReadKey();
+            String imie;
+            imie = Console.ReadLine();
+            //Console.ReadKey();
             Console.ForegroundColor = Color.White;
 
             //Interface.zapiszWynik(poziom, punkty, wyczyszczoneLinie, actualGameMode);
-            bazaWynikow.TryZapisacDanyWynik(punkty, actualGameMode);
+            bazaWynikow.TryZapisacDanyWynik(punkty, actualGameMode, imie);
 
             Interface.MainMenu(MenuOptions.ZwrocOpcje());
         }
